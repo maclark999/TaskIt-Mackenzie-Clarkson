@@ -2,5 +2,48 @@
  @import "bootstrap";
 
  body {
-   padding-top: 50px;
+   padding-top: 60px;
  }
+
+ ul {
+   display: block;
+   list-style-type: disc;
+   -webkit-margin-before: 1em;
+   -webkit-margin-after: 1em;
+   -webkit-margin-start: 0px;
+   -webkit-margin-end: 0px;
+   -webkit-padding-start: 40px;
+ }
+
+footer{
+  padding-bottom: 1em;
+}
+
+.img-footer {
+  max-width: 2em;
+  max-height: 2em;
+  margin-right: .5em;
+}
+
+
+/*p {
+  display: block;
+  -webkit-margin-before: 1em;
+  -webkit-margin-after: 1em;
+  -webkit-margin-start: 0px;
+  -webkit-margin-end: 0px;
+  -webkit-padding-start: 40px;
+}*/
+
+/*.panel-primary>.panel-heading {
+  color:white;
+  background-color: #428bca;
+  border-color: #428bca;
+}
+
+.panel-heading {
+  padding:10px 15px;
+  border-bottom: 1px solid transparent;
+  border-top-right-radius: 3px;
+  border-top-left-radius: 3px;
+}*/
