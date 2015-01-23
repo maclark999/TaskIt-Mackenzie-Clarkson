@@ -46,18 +46,14 @@
   </div>
 
   <div class="col-md-6 text-right">
-    <a href="https://www.linkedin.com/in/mackenzieclarkson" target="_blank">
-      <%=  image_tag"linkedin.jpg", class: "img-footer" %>
+      <%= link_to (image_tag "linkedin.jpg", class: "img-footer"), "https://www.linkedin.com/in/mackenzieclarkson", target: "_blank" %>
 
-    <a href="https://github.com/maclark999" target="_blank">
-      <%= image_tag"github.png", class: "img-footer" %>
-    </a>
-    <a href="https://twitter.com/ahumanmackenzie" target="_blank">
-      <%= image_tag"twitter.png", class: "img-footer" %>
-    </a>
-    <a href="https://students.gschool.it/students/214" target="_blank">
-      <%= image_tag"galavanize.png", class: "img-footer" %>
-    </a>
+      <%= link_to (image_tag "github.png", class: "img-footer"), "https://github.com/maclark999", target: "_blank" %>
+
+      <%= link_to (image_tag "twitter.png", class: "img-footer"), "https://twitter.com/ahumanmackenzie", target: "_blank" %>
+
+      <%= link_to (image_tag "galavanize.png", class: "img-footer"), "https://students.gschool.it/students/214", target: "_blank" %>
+  
   </div>
 </div>
 </footer>
