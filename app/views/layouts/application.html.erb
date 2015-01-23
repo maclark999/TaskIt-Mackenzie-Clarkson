@@ -7,7 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+<div class="container">
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -17,7 +17,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">gCamp</a>
+          <a class="navbar-brand" href="/">gCamp</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form class="navbar-form navbar-right">
@@ -35,26 +35,27 @@
 <footer>
   <div class="row">
   <div class="col-md-6">
-    <a href="/about">About</a>
+    <!-- <a href="/about">About</a> -->
+    <%= link_to "About", about_path %>
     |
-    <a href="/terms">Terms</a>
+    <%= link_to "Terms", terms_path %>
     |
-    <a href="/faq">FAQ</a>
+    <%= link_to "FAQ", faq_path %>
     |
-    <a href="/tasks">Tasks</a>
+    <%= link_to "Tasks", tasks_path %>
   </div>
 
   <div class="col-md-6 text-right">
-    <a href="https://www.linkedin.com">
-      <%= image_tag"linkedin.jpg", class: "img-footer" %>
-    </a>
-    <a href="https://www.github.com">
+    <a href="https://www.linkedin.com/in/mackenzieclarkson" target="_blank">
+      <%=  image_tag"linkedin.jpg", class: "img-footer" %>
+
+    <a href="https://github.com/maclark999" target="_blank">
       <%= image_tag"github.png", class: "img-footer" %>
     </a>
-    <a href="https://www.twitter.com">
+    <a href="https://twitter.com/ahumanmackenzie" target="_blank">
       <%= image_tag"twitter.png", class: "img-footer" %>
     </a>
-    <a href="https://www.galvanize.com">
+    <a href="https://students.gschool.it/students/214" target="_blank">
       <%= image_tag"galavanize.png", class: "img-footer" %>
     </a>
   </div>

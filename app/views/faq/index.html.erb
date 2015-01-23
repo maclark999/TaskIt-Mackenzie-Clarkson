@@ -1,0 +1,32 @@
+<div class="container">
+
+<div class="page-header">
+<h1> Frequently Asked Questions </h1>
+<body name = "top">
+</div>
+
+
+<div>
+  <ul>
+    <% @quests.each do |thing| %>
+    <li><%= link_to thing.question, "##{thing.slug}" %></li>
+  <% end %>
+
+</ul>
+</div>
+
+
+<div class = row>
+<div class = col-md-6>
+  <% @quests.each do |thing| %>
+  <h3 id ="<%= thing.slug %>"><strong> <%= thing.question %></strong></h3>
+
+    <p><%= thing.answer %></p>
+    <%= link_to "top", "#top" %>
+
+
+    <% end %>
+</div>
+</div>
+</body>
+</div>
