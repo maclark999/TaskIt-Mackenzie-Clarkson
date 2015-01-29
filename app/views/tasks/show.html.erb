@@ -18,3 +18,5 @@
   <li><a href="/tasks">Tasks</a></li>
   <li class="active"><%= @task.description %></li>
 </ol>
+
+<p><strong>Due On: </strong><%= @task.due_date.to_s.gsub("-","/")%></p>
