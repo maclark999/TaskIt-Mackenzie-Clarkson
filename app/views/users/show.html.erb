@@ -1,4 +1,5 @@
 <div class="page-header">
+  <%= link_to 'Edit', edit_user_path, class: "btn btn-info pull-right" %>
   <h1><%= @user.full_name %></h1>
 </div>
 
@@ -7,6 +8,8 @@
   <li class="active"><%= @user.first_name.capitalize %></li>
 </ol>
 
-  <p><b>First Name:</b> <%= @user.first_name.capitalize %></p>
-  <p><b>Last Name:</b> <%= @user.last_name.capitalize %></p>
-  <p><b>Email:</b> <%= mail_to @user.email %></p>
+<dl class="dl-horizontal">
+  <p><dt><b>First Name</b><dt><dd><%= @user.first_name.capitalize %></dd></p>
+  <p><dt><b>Last Name</b><dt><dd><%= @user.last_name.capitalize %></dd></p>
+  <p><dt><b>Email</b><dt><dd><%= mail_to @user.email %></dd></p>
+</dl>
