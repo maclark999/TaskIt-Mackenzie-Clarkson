@@ -17,6 +17,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
     if @user.save
       redirect_to users_path, notice: 'User was successfully created'
+    else render ('new')
       end
     end
 
@@ -26,13 +27,16 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
   def update
     @user = User.find(params[:id])
-    @user.update_attributes(user_params)
-    redirect_to user_path
+      if @user.update_attributes(user_params)
+        redirect_to users_path, notice: 'User was successfully updated'
+      else render ('index')
+      end
   end
 
   def destroy
+    @user = User.find(params[:id])
     if @user.destroy
-      redirect_to users_path
+      redirect_to users_path, notice: 'User was successfully destroyed'
     end
   end
 

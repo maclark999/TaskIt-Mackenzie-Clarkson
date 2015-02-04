@@ -1,0 +1,12 @@
+<div class="page-header">
+  <h1><%= @user.full_name %></h1>
+</div>
+
+<ol class="breadcrumb">
+  <li><a href="/users">Users</a></li>
+  <li class="active"><%= @user.first_name.capitalize %></li>
+</ol>
+
+  <p><b>First Name:</b> <%= @user.first_name.capitalize %></p>
+  <p><b>Last Name:</b> <%= @user.last_name.capitalize %></p>
+  <p><b>Email:</b> <%= mail_to @user.email %></p>
