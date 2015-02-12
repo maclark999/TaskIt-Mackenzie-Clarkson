@@ -13,3 +13,4 @@
  rails s
 
  ```
+# gal_pal_val_day
