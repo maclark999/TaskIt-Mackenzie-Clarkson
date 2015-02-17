@@ -35,7 +35,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
     @project = Project.find(params[:id])
       if @project.update_attributes(project_params)
         redirect_to project_path, notice: 'User was successfully updated'
-      else render ('index')
+      else render ('new')
       end
   end
 

@@ -29,7 +29,7 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
     @user = User.find(params[:id])
       if @user.update_attributes(user_params)
         redirect_to users_path, notice: 'User was successfully updated'
-      else render ('index')
+      else render ('new')
       end
   end
 

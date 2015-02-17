@@ -1,21 +1,24 @@
 <%= form_for(@task, html: {class: "form-horizontal"}) do |f| %>
-  <% if @task.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@task.errors.count, "error") %> prohibited this task from being saved:</h2>
 
-      <ul>
+<% if @task.errors.any? %>
+<div class = "col-md-offset-2">
+  <div id="error_explanation", class="alert alert-danger">
+    <h4><%= pluralize(@task.errors.count, "error") %> prohibited this form from being saved:</h4>
+    <ul>
       <% @task.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+      <li><%= message %></li>
       <% end %>
-      </ul>
-    </div>
-  <% end %>
+    </ul>
+  </div>
+</div>
+<% end %>
+
 
 
     <div class="form-group">
         <label class="control-label col-md-2"><%= f.label :description %></label>
       <div class="form-controls col-md-4">
-        <input class="form-control"<%= f.text_field :description %>
+        <%= f.text_field :description, class: "form-control" %>
       </div>
     </div>
 
