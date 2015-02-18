@@ -14,7 +14,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
   def create
     @project = Project.new(project_params)
     if @project.save
-      redirect_to project_path(@project), notice: 'User was successfully created'
+      redirect_to project_path(@project), notice: 'Project was successfully created'
     else
       render ('new')
     end
@@ -23,7 +23,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
   def destroy
     @project = Project.find(params[:id])
       if @project.destroy
-        redirect_to projects_path, notice: 'User was successfully destroyed'
+        redirect_to projects_path, notice: 'Project was successfully destroyed'
       end
   end
 
@@ -34,7 +34,7 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
   def update
     @project = Project.find(params[:id])
       if @project.update_attributes(project_params)
-        redirect_to project_path, notice: 'User was successfully updated'
+        redirect_to project_path, notice: 'Project was successfully updated'
       else render ('new')
       end
   end
