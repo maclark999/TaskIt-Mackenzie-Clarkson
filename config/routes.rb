@@ -12,8 +12,11 @@ Rails.application.routes.draw do
   get 'about' => 'about#show'
   get 'tasks' => 'pages#tasks'
   get 'terms' => 'pages#terms'
+  get '/signup' => 'registrations#new'
+  get '/signup' => 'registrations#create'
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
+  get '/signout' => 'sessions#destroy'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

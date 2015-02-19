@@ -31,17 +31,21 @@
           <a class="navbar-brand" href="/">gCamp</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form class="navbar-form navbar-right">
-          </form>
+          <ul class = 'nav navbar-nav navbar-right'>
+            <li><%= link_to 'Sign Up', signup_path%></li>
+            <li><%= link_to 'Sign In', signin_path%></li>
+          </ul>
         </div>
       </div>
     </nav>
 
     <%= yield %>
-</body>
 
-<hr>
+</body>
+</div>
+<div class = "container">
 <footer>
+  <hr>
   <div class="row">
   <div class="col-md-6">
     <!-- <a href="/about">About</a> -->
@@ -79,9 +83,6 @@
     <script src="../../dist/js/bootstrap.min.js"></script>
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
-
-
-
 
 
 </html>
