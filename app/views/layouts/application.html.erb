@@ -32,8 +32,13 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class = 'nav navbar-nav navbar-right'>
-            <li><%= link_to 'Sign Up', signup_path%></li>
-            <li><%= link_to 'Sign In', signin_path%></li>
+            <% if current_user %>
+              <li><%=link_to current_user.full_name, user_path(current_user) %></li>
+              <li><%= link_to 'Sign Out', signout_path %></li>
+            <% else %>
+              <li><%= link_to 'Sign Up', signup_path%></li>
+              <li><%= link_to 'Sign In', signin_path%></li>
+            <% end %>
           </ul>
         </div>
       </div>
