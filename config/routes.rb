@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   get 'tasks' => 'pages#tasks'
   get 'terms' => 'pages#terms'
   get '/signup' => 'registrations#new'
-  get '/signup' => 'registrations#create'
+  post '/signup' => 'registrations#create'
   get '/signin' => 'sessions#new'
   post '/signin' => 'sessions#create'
   get '/signout' => 'sessions#destroy'

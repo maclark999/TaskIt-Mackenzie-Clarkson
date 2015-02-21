@@ -1,0 +1,41 @@
+
+<%= form_for(@user, url: signup_path) do |f| %>
+<%= render partial: "share/errors", locals: {error: @user} %>
+
+<div class = "well col-md-4 col-md-offset-4">
+  <h1 class= "text-center">Sign Up for gCamp!</h1>
+  <div class="form-group">
+    <%= f.label :first_name, class: "control-label" %>
+    <%= f.text_field :first_name, class: "form-control"%>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :last_name, class: "control-label" %>
+    <%= f.text_field :last_name, class: "form-control" %>
+  </div>
+
+
+  <div class="form-group">
+    <%= f.label :email, class: "control-label" %>
+    <%= f.email_field :email, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password, class: "control-label" %>
+    <%= f.password_field :password, class: "form-control"%>
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, class: "control-label" %>
+    <%= f.password_field :password, class: "form-control"%>
+  </div>
+
+
+
+  <div class="form-group">
+    <input class="btn btn-primary"<%= f.submit%>
+    <%= link_to 'Cancel', root_path, class: "btn btn-default" %>
+  </div>
+</div>
+<% end %>
