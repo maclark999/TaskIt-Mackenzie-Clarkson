@@ -1,9 +1,21 @@
 
 <%= form_for(@user, url: signup_path) do |f| %>
-<%= render partial: "share/errors", locals: {error: @user} %>
+
 
 <div class = "well col-md-4 col-md-offset-4">
-  <h1 class= "text-center">Sign Up for gCamp!</h1>
+  <h1>Sign Up for gCamp!</h1>
+
+  <% if @user.errors.any? %>
+  <div class="error_explanations">
+
+      <% @user.errors.full_messages.each do |message| %>
+      <div class = "errors"><%= message %></div>
+      <% end %>
+  </div>
+  <% end %>
+
+
+
   <div class="form-group">
     <%= f.label :first_name, class: "control-label" %>
     <%= f.text_field :first_name, class: "form-control"%>
