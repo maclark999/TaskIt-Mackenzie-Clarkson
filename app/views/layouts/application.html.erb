@@ -10,15 +10,6 @@
 <body>
 <div class="container">
 
-  <% if flash[:notice] %>
-  <div class="alert alert-success text-center"><%= flash[:notice] %></div>
-
-
-  <% elsif flash[:alert] %>
-  <div class="alert alert-danger text-center"><%= flash[:alert] %></div>
-  <% end %>
-
-
     <nav class="navbar navbar-inverse navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -43,6 +34,14 @@
         </div>
       </div>
     </nav>
+
+    <% if flash[:notice] %>
+    <div class="alert alert-success text-center"><%= flash[:notice] %></div>
+
+
+    <% elsif flash[:alert] %>
+    <div class="alert alert-danger text-center"><%= flash[:alert] %></div>
+    <% end %>
 
     <%= yield %>
 
