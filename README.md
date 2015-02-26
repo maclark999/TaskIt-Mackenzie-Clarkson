@@ -13,5 +13,4 @@
  rails s
 
  ```
-# gal_pal_val_day
-# gal_pal_val_day
+ [![Build Status](https://travis-ci.org/maclark999/gCamp-Mackenzie-Clarkson.svg?branch=master)](https://travis-ci.org/maclark999/gCamp-Mackenzie-Clarkson)

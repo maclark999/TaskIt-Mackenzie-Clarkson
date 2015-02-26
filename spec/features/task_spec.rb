@@ -1,7 +1,12 @@
 require 'rails_helper'
 
  describe 'User can CRUD tasks' do
+   User.create(:first_name => 'Test', :last_name => 'Testy', :email => 'test@testy.com', :password => 'password')
    before :each do visit '/'
+     click_link 'Sign In'
+     fill_in :email, :with => 'test@testy.com'
+     fill_in :password, :with => 'password'
+     click_button 'Sign In'
      click_on 'Tasks'
    end
 
