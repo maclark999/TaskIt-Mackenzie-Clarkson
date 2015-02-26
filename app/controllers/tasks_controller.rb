@@ -5,12 +5,14 @@ class TasksController < ApplicationController
   # GET /tasks
   # GET /tasks.json
   def index
-    @tasks = Task.all
+    @project = Project.find(params[:project_id])
+    @tasks = @project.tasks
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
+    @project = Project.find(params[:project_id])
   end
 
   # GET /tasks/new
@@ -25,18 +27,15 @@ class TasksController < ApplicationController
   # POST /tasks
   # POST /tasks.json
   def create
+    @project = Project.find(params[:project_id])
     @task = Task.new(task_params)
-
-    respond_to do |format|
+    @task.project_id = params[:project_id]
       if @task.save
-        format.html { redirect_to @task, notice: 'Task was successfully created.' }
-        format.json { render :show, status: :created, location: @task }
+        redirect_to project_path(@project), notice: 'Task was successfully created.'
       else
-        format.html { render :new }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        render :new
       end
     end
-  end
 
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
