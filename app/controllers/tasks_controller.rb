@@ -1,37 +1,39 @@
 class TasksController < ApplicationController
   before_action :authenticate
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :set_project
 
   # GET /tasks
   # GET /tasks.json
   def index
-    @project = Project.find(params[:project_id])
     @tasks = @project.tasks
   end
 
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    @project = Project.find(params[:project_id])
+
   end
 
   # GET /tasks/new
   def new
     @task = Task.new
+
   end
 
   # GET /tasks/1/edit
   def edit
+
   end
 
   # POST /tasks
   # POST /tasks.json
   def create
-    @project = Project.find(params[:project_id])
+
     @task = Task.new(task_params)
     @task.project_id = params[:project_id]
       if @task.save
-        redirect_to project_path(@project), notice: 'Task was successfully created.'
+        redirect_to project_tasks_path(@project), notice: 'Task was successfully created.'
       else
         render :new
       end
@@ -40,24 +42,18 @@ class TasksController < ApplicationController
   # PATCH/PUT /tasks/1
   # PATCH/PUT /tasks/1.json
   def update
-    respond_to do |format|
       if @task.update(task_params)
-        format.html { redirect_to @task, notice: 'Task was successfully updated.' }
-        format.json { render :show, status: :ok, location: @task }
+        redirect_to project_tasks_path(@project), notice: 'Task was successfully updated'
       else
-        format.html { render :edit }
-        format.json { render json: @task.errors, status: :unprocessable_entity }
+        render 'new'
       end
-    end
   end
 
   # DELETE /tasks/1
   # DELETE /tasks/1.json
   def destroy
-    @task.destroy
-    respond_to do |format|
-      format.html { redirect_to tasks_url, notice: 'Task was successfully destroyed.' }
-      format.json { head :no_content }
+    if @task.destroy
+      redirect_to project_tasks_path(@project), notice: 'Task was succesfully destroyed'
     end
   end
 
@@ -70,5 +66,9 @@ class TasksController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def task_params
       params.require(:task).permit(:description, :due_date, :complete)
+    end
+
+    def set_project
+      @project = Project.find(params[:project_id])
     end
 end
