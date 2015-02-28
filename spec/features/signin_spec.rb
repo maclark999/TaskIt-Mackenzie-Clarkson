@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 describe 'the signin process' do
-  User.create(:last_name => 'barker', :first_name => 'bob', :email => 'bob@bob.com', :password => 'barker')
   before :each do visit '/'
+    User.create(:last_name => 'barker', :first_name => 'bob', :email => 'bob@bob.com', :password => 'barker')
+
   end
   scenario 'user cannot sign in with invalid information' do
     click_on 'Sign In'

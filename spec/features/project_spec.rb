@@ -3,6 +3,8 @@ require 'rails_helper'
 describe 'User can CRUD projects' do
   User.create(:first_name => 'Test', :last_name => 'Testy', :email => 'test@testy.com', :password => 'password')
   before :each do visit '/'
+    User.create(:first_name => 'Test', :last_name => 'Testy', :email => 'test@testy.com', :password => 'password')
+
     click_link 'Sign In'
     fill_in :email, :with => 'test@testy.com'
     fill_in :password, :with => 'password'
