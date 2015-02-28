@@ -53,7 +53,7 @@ class TasksController < ApplicationController
   # DELETE /tasks/1.json
   def destroy
     if @task.destroy
-      redirect_to project_tasks_path(@project), notice: 'Task was succesfully destroyed'
+      redirect_to project_tasks_path(@project), notice: 'Task was successfully destroyed'
     end
   end
 
