@@ -6,6 +6,20 @@
   <li class = "active">Memberships</li>
 </ol>
 
+<% if @membership.errors.any? %>
+<div class = "col-md-offset-2">
+<div id="error_explanation", class= "alert alert-danger">
+  <h4><%= pluralize(@membership.errors.count, "error") %> prohibited this form from being saved:</h4>
+
+  <ul>
+    <% @membership.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+</div>
+<% end %>
+
 <div class="well form-inline">
 <%= form_for [@project, @membership] do |f| %>
 <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'}, {class: "form-control"}) %>
@@ -15,5 +29,5 @@
 </div>
 
 <% @project.users.each do |member| %>
-<%=link_to member.full_name %><br>
+<%=link_to member.full_name, user_path(member) %><br>
 <% end %>

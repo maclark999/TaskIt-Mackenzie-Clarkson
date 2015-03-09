@@ -5,6 +5,7 @@ class MembershipsController < ApplicationController
   def index
     @memberships = @project.memberships
     @membership = @project.memberships.build
+
   end
 
   def show
