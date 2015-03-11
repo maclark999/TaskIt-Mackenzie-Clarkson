@@ -4,15 +4,10 @@ class MembershipsController < ApplicationController
 
   def index
     @memberships = @project.memberships
-    @membership = @project.memberships.build
-
+    @membership = Membership.new
   end
 
   def show
-  end
-
-  def new
-    @membership = @project.memberships.build
   end
 
   def create
@@ -21,7 +16,7 @@ class MembershipsController < ApplicationController
     if @membership.save
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully added"
     else
-      render :index, alert: 'Membership creation unsuccessful'
+      render :index, alert: 'Member creation unsuccessful'
     end
   end
 
@@ -29,9 +24,16 @@ class MembershipsController < ApplicationController
   end
 
   def update
+    if @membership.update(membership_params)
+      redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated"
+    else
+      render :index, alert: 'Member update failed'
+    end
   end
 
   def destroy
+    @membership.destroy
+    redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name}'s membership was successfully destroyed"
   end
 
 private
