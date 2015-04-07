@@ -12,8 +12,9 @@ class TasksController < ApplicationController
   # GET /tasks/1
   # GET /tasks/1.json
   def show
-    @comments = Comment.all
+    @comments = @task.comments.all
     @comment = @task.comments.build
+    @user = User.find_by_id(session[:user_id])
   end
 
   # GET /tasks/new

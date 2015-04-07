@@ -8,6 +8,8 @@ class CommentsController < ApplicationController
     @comment.user_id = session[:user_id]
       if @comment.save
         redirect_to project_task_path(@project, @task)
+        #this doesn't work
+      else redirect_to :back
       end
   end
 
