@@ -10,6 +10,18 @@
   <li><a href="/projects">Projects</a></li>
   <li class="active"><%= @project.name %></li>
 </ol>
-
+<div class = "task-stuff">
 <%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project.id) %><br>
 <%= link_to "#{@project.memberships.count} Memberships", project_memberships_path(@project.id) %>
+</div>
+
+<div class = "well">
+  <h4>Delete Project</h4>
+  <p>Deleting this project will also delete <%=@project.memberships.count%> membership(s),
+    <%=@project.tasks.count%> task(s) and associated comments</p>
+    <%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-danger" %>
+</div>
+
+<!--
+* In a well,
+* Users should have to click OK to a dialog that says "Are you sure?" -->

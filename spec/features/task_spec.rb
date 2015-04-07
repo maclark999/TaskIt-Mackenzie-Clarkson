@@ -97,8 +97,8 @@ require 'rails_helper'
     click_on 'Create Task'
     visit 'tasks'
 
-    click_on 'Delete'
-
+    click_link('delete_link')
+    # '', :href => "/projects/8/tasks/1"
     expect(page).to have_content ('Task was successfully destroyed')
     expect(page).to have_no_content('test')
   end
