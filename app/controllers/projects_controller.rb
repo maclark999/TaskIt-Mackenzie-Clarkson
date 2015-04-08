@@ -14,8 +14,11 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
 
   def create
     @project = Project.new(project_params)
+    user_id = session[:user_id]
+
     if @project.save
-      redirect_to project_path(@project), notice: 'Project was successfully created'
+      @project.memberships.create(role: 1, user_id: user_id)
+      redirect_to project_tasks_path(@project), notice: 'Project was successfully created'
     else
       render ('new')
     end
