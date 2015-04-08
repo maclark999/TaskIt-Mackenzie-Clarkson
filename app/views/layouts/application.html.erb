@@ -34,11 +34,13 @@
               <% Membership.all.each do |member| %>
               <% if member.user_id == current_user.id %>
               <li><%= link_to member.project.name, project_path(member.project) %></li>
-              <!-- <li class="divider"></li> -->
               <% end %>
               <% end %>
+              <li class="divider"></li>
+              <li><%= link_to 'New Project', new_project_path %></li>
             </ul>
           </li>
+          <li><%= link_to 'Users', users_path%></li>
         </ul>
         <% end %>
 
@@ -73,6 +75,18 @@
 <footer>
   <hr>
   <div class="row">
+    <% if current_user %>
+    <div class= "text-center">
+
+    <%= link_to "Home", root_path %>
+    |
+    <%= link_to "About", about_path %>
+    |
+    <%= link_to "Terms", terms_path %>
+    |
+    <%= link_to "FAQ", faq_path %>
+  
+    <% else %>
   <div class="col-md-6">
     <!-- <a href="/about">About</a> -->
     <%= link_to "About", about_path %>
@@ -96,6 +110,7 @@
       <%= link_to (image_tag "galavanize.png", class: "img-footer"), "https://students.gschool.it/students/214", target: "_blank" %>
 
   </div>
+  <% end %>
 </div>
 
 </footer>
