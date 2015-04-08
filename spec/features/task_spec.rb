@@ -49,7 +49,7 @@ require 'rails_helper'
 
     click_on 'Create Task'
 
-    click_on 'Show'
+    click_link 'test'
 
     expect(page).to have_content ('test')
 
