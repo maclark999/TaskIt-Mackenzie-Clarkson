@@ -58,9 +58,11 @@ namespace :clean do
 
   task :memberships_ids_null_remove => :environment do
     Membership.all.each do |membership|
-      if membership.project_id.nil? || membership.task_id.nil?
+      if membership.project_id.nil? || membership.user_id.nil?
         membership.destroy
       end
     end
   end
+
+task :all => ["clean:memberships_users_remove", "clean:memberships_projects_remove", "clean:tasks_projects_remove", "clean:sets_user_id", "clean:tasks_project_id_remove", "clean:comments_task_id_remove", "clean:memberships_ids_null_remove" ]
 end
