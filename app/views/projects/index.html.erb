@@ -4,7 +4,7 @@
   <h1>Projects</h1>
 </div>
 
-<table class="table">
+<table class="table table-striped table-hover">
   <thead>
       <tr>
         <th>Name</th>
@@ -12,19 +12,18 @@
         <th colspan="3"></th>
       </tr>
   </thead>
-
   <tbody>
-    <% @projects.each do |project| %>
+      <% Membership.all.each do |member| %>
+      <% if member.user_id == current_user.id %>
       <tr>
-        <td><%= link_to project.name, project %></td>
-        <td><%= link_to project.tasks.count, project_tasks_path(project) %>
-        <td class = "text-right">
-          <%= link_to 'Edit', edit_project_path(project), class: "btn btn-info"%>
-          <%= link_to 'Delete', project, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
-        </td>
+        <td><%= link_to member.project.name, project_path(member.project) %></td>
+        <td><%= link_to member.project.tasks.count, project_tasks_path(member.project) %>
+          <td class = "text-right">
+            <%= link_to "Edit", edit_project_path(member.project_id), class: "btn btn-info" %>
+            <%= link_to "Delete", project_path(member.project_id), method: :delete, class: "btn btn-danger" %>
+          </td>
       </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
+      <% end %>
+      <% end %>
+    </tbody>
+  </table>

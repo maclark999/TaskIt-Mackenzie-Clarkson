@@ -2,6 +2,7 @@ class TasksController < ApplicationController
   before_action :authenticate
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   before_action :set_project
+  before_action :current_member
 
   # GET /tasks
   # GET /tasks.json
@@ -73,4 +74,5 @@ class TasksController < ApplicationController
     def set_project
       @project = Project.find(params[:project_id])
     end
+
 end

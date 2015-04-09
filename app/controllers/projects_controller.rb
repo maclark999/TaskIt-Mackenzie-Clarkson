@@ -3,6 +3,7 @@ before_action :authenticate
 before_action :set_project, only: [:show, :edit, :update, :destroy]
   def index
     @projects = Project.all
+    @user = User.find_by_id(session[:user_id])
   end
 
   def show

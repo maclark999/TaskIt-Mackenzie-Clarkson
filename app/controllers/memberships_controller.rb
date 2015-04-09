@@ -11,6 +11,7 @@ class MembershipsController < ApplicationController
   end
 
   def create
+    @user = User.find_by(params[:user_id])
     @membership = Membership.new(membership_params)
     @membership.project_id = @project.id
     if @membership.save
