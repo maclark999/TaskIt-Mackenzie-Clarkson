@@ -1,10 +1,12 @@
 class MembershipsController < ApplicationController
   before_action :set_project
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
+  before_action :current_member
 
   def index
     @memberships = @project.memberships
     @membership = Membership.new
+    @user = User.find_by_id(session[:user_id])
   end
 
   def show
@@ -48,6 +50,15 @@ private
 
   def membership_params
     params.require(:membership).permit(:role, :user_id, :project_id)
+  end
+
+  def current_member
+    @project = Project.find_by_id(params[:project_id])
+    @project.memberships.each do |member|
+      if member.user_id != current_user.id
+        redirect_to projects_path, alert: 'You do not have access to that project'
+      end
+    end
   end
 
 end

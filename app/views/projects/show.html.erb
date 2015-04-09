@@ -1,7 +1,12 @@
+<% @project.memberships.each do |member| %>
+<% if member.user_id == current_user.id %>
+
 <div class="page-header">
   <div class = "pull-right">
+    <% if member.role == "owner" %>
     <%= link_to 'Edit', edit_project_path, class: "btn btn-info" %>
     <%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-danger" %>
+    <% end %>
   </div>
   <h1><%= @project.name %></h1>
 </div>
@@ -11,17 +16,22 @@
   <li class="active"><%= @project.name %></li>
 </ol>
 <div class = "task-stuff">
-<%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project.id) %><br>
-<%= link_to "#{@project.memberships.count} Memberships", project_memberships_path(@project.id) %>
+  <%= link_to "#{@project.tasks.count} Tasks", project_tasks_path(@project.id) %><br>
+  <%= link_to "#{@project.memberships.count} Memberships", project_memberships_path(@project.id) %>
 </div>
 
-<div class = "well">
+
+<% if member.role == "owner" %>
+  <div class = "well">
   <h4>Delete Project</h4>
   <p>Deleting this project will also delete <%=@project.memberships.count%> membership(s),
     <%=@project.tasks.count%> task(s) and associated comments</p>
     <%= link_to 'Delete', @project, method: :delete, data: { confirm: 'Are you sure?' },  class: "btn btn-danger" %>
-</div>
+  </div>
+<% end %>
+<% end %>
+<% end %>
 
-<!--
-* In a well,
-* Users should have to click OK to a dialog that says "Are you sure?" -->
+  <!--
+  * In a well,
+  * Users should have to click OK to a dialog that says "Are you sure?" -->

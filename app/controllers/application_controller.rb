@@ -15,11 +15,15 @@ class ApplicationController < ActionController::Base
 
   def current_member
     @project = Project.find_by_id(params[:project_id])
+    count = 0
     @project.memberships.each do |member|
-      if member.user_id != current_user.id
-        redirect_to projects_path, alert: 'You do not have access to that project'
+      if member.user_id == current_user.id
+          count += 1
+        end
       end
-    end
+      if count == 0
+          redirect_to projects_path, alert: 'you do not have access'
+      end
   end
 
     helper_method :current_member

@@ -29,6 +29,8 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
     @project = Project.find(params[:id])
       if @project.destroy
         redirect_to projects_path, notice: 'Project was successfully destroyed'
+      else
+        render :back, alert: 'You do not have access'
       end
   end
 
@@ -40,7 +42,8 @@ before_action :set_project, only: [:show, :edit, :update, :destroy]
     @project = Project.find(params[:id])
       if @project.update_attributes(project_params)
         redirect_to project_path, notice: 'Project was successfully updated'
-      else render ('new')
+      else
+        render ('new'), alert: 'You do not have access'
       end
   end
 

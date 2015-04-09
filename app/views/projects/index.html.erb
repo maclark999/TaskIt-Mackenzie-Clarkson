@@ -13,15 +13,17 @@
       </tr>
   </thead>
   <tbody>
-      <% Membership.all.each do |member| %>
-      <% if member.user_id == current_user.id %>
-      <tr>
-        <td><%= link_to member.project.name, project_path(member.project) %></td>
-        <td><%= link_to member.project.tasks.count, project_tasks_path(member.project) %>
-          <td class = "text-right">
-            <%= link_to "Edit", edit_project_path(member.project_id), class: "btn btn-info" %>
-            <%= link_to "Delete", project_path(member.project_id), method: :delete, class: "btn btn-danger" %>
-          </td>
+    <% Membership.all.each do |member| %>
+    <% if member.user_id == current_user.id %>
+    <tr>
+      <td><%= link_to member.project.name, project_path(member.project) %></td>
+      <td><%= link_to member.project.tasks.count, project_tasks_path(member.project) %>
+        <% if member.role == "owner" %>
+        <td class = "text-right">
+          <%= link_to "Edit", edit_project_path(member.project_id), class: "btn btn-info" %>
+          <%= link_to "Delete", project_path(member.project_id), method: :delete, class: "btn btn-danger" %>
+        </td>
+        <% end %>
       </tr>
       <% end %>
       <% end %>
