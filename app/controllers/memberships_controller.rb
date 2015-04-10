@@ -36,7 +36,11 @@ class MembershipsController < ApplicationController
 
   def destroy
     @membership.destroy
+    if params[:from]=='own_membership'
+      redirect_to projects_path, notice: "#{@membership.user.full_name} was successfully removed"
+    else
     redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name}'s membership was successfully destroyed"
+  end
   end
 
 private
@@ -50,15 +54,6 @@ private
 
   def membership_params
     params.require(:membership).permit(:role, :user_id, :project_id)
-  end
-
-  def current_member
-    @project = Project.find_by_id(params[:project_id])
-    @project.memberships.each do |member|
-      if member.user_id != current_user.id
-        redirect_to projects_path, alert: 'You do not have access to that project'
-      end
-    end
   end
 
 end

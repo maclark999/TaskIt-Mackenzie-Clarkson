@@ -49,6 +49,9 @@
 
         <% else %>
           <%= member.role %>
+          <% if current_user.id == membler.user_id %>
+          <%=link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membler, :from => 'own_membership'), method: :delete, data: { confirm: 'Are you sure?' }%>
+          <% end %>
         <% end %>
         </div>
         <% end %>

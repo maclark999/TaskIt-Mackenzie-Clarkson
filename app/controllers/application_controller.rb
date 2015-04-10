@@ -22,7 +22,7 @@ class ApplicationController < ActionController::Base
         end
       end
       if count == 0
-          redirect_to projects_path, alert: 'you do not have access'
+          redirect_to projects_path, alert: 'You do not have access'
       end
   end
 
