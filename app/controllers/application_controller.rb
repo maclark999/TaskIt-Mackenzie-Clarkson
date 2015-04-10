@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     if not current_user
-      redirect_to signup_path, alert: 'You are not signed in!'
+      redirect_to signin_path, alert: 'You are not signed in!'
     end
   end
 

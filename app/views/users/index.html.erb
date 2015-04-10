@@ -19,8 +19,10 @@
         <td><%= link_to user.full_name, user %></td>
         <td><%= mail_to user.email %></td>
         <td class = "text-right">
+          <% if user.id == current_user.id %>
           <%= link_to 'Edit', edit_user_path(user), class: "btn btn-info"%>
           <%= link_to 'Delete', user, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %>
+          <% end %>
         </td>
       </tr>
     <% end %>

@@ -24,6 +24,10 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 
   def edit
+    @user = User.find(params[:id])
+    unless @user.id == current_user.id
+      render :file => '/public/404.html', :status => 404
+    end
   end
 
   def update

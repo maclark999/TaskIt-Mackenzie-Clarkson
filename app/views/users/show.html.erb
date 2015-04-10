@@ -1,5 +1,7 @@
 <div class="page-header">
+  <% if @user.id == current_user.id %>
   <%= link_to 'Edit', edit_user_path, class: "btn btn-info pull-right" %>
+  <% end %>
   <h1><%= @user.full_name %></h1>
 </div>
 
