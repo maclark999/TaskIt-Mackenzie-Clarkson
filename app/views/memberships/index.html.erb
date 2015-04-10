@@ -45,8 +45,11 @@
         <% if member.role == "owner" %>
           <%= f.select(:role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, {class: "form-control"}) %>
           <input class = 'btn btn-primary'<%= f.submit "Update"%></input>
+        <% if @project.memberships.where(role: 1).count == 1 && membler.role == "owner"%>
+          <%= "You are the last owner" %>
+          <% else %>
           <%=link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membler), method: :delete, data: { confirm: 'Are you sure?' }%>
-
+          <% end %>
         <% else %>
           <%= member.role %>
           <% if current_user.id == membler.user_id %>

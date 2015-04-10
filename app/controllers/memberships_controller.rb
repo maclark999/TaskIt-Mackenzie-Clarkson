@@ -27,7 +27,11 @@ class MembershipsController < ApplicationController
   end
 
   def update
-    if @membership.update(membership_params)
+    @memberships = @project.memberships
+  if @membership.update(role: 1) && @memberships.where(role: 1).count == 1
+    redirect_to :back, alert: "Projects much have at least one owner"
+  elsif @memberships.where(role: 1).count > 1
+      @membership.update(membership_params)
       redirect_to project_memberships_path(@project), notice: "#{@membership.user.full_name} was successfully updated"
     else
       render :index, alert: 'Member update failed'
