@@ -2,7 +2,7 @@ class MembershipsController < ApplicationController
   before_action :set_project
   before_action :set_membership, only: [:show, :edit, :update, :destroy]
   before_action :current_member
-  layout: 'internal'
+  layout 'internal'
 
   def index
     @memberships = @project.memberships
