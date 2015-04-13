@@ -22,10 +22,10 @@
   <% end %>
 
 
-  <% @project.memberships.each do |member| %>
-  <% if member.user_id == current_user.id %>
+  <%# @project.memberships.each do |member| %>
+  <%# if @user.admin? || member.user_id == current_user.id %>
 
-  <% if member.role == "owner" %>
+  <% if @user.admin? || @current_membership[0].role == "owner" %>
       <div class="well form-inline col-md-8">
         <%= form_for [@project, @membership] do |f| %>
           <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'}, {class: "form-control"}) %>
@@ -42,7 +42,7 @@
         </div>
       <%= form_for [@project, membler], method: :put do |f| %>
         <div class="member form-group">
-        <% if member.role == "owner" %>
+        <% if @user.admin? || @current_membership[0].role == "owner" %>
           <%= f.select(:role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, {class: "form-control"}) %>
           <input class = 'btn btn-primary'<%= f.submit "Update"%></input>
         <% if @project.memberships.where(role: 1).count == 1 && membler.role == "owner"%>
@@ -51,15 +51,15 @@
           <%=link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membler), method: :delete, data: { confirm: 'Are you sure?' }%>
           <% end %>
         <% else %>
-          <%= member.role %>
+          <%= membler.role %>
           <% if current_user.id == membler.user_id %>
           <%=link_to "<span class=\"glyphicon glyphicon-remove\"></span>".html_safe, project_membership_path(@project, membler, :from => 'own_membership'), method: :delete, data: { confirm: 'Are you sure?' }%>
           <% end %>
-        <% end %>
+          <% end %>
         </div>
         <% end %>
       <% end %>
       </div>
 
-  <% end %>
-  <% end %>
+  <%# end %>
+  <%# end %>

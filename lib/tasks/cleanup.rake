@@ -64,5 +64,13 @@ namespace :clean do
     end
   end
 
-task :all => ["clean:memberships_users_remove", "clean:memberships_projects_remove", "clean:tasks_projects_remove", "clean:sets_user_id", "clean:tasks_project_id_remove", "clean:comments_task_id_remove", "clean:memberships_ids_null_remove" ]
+    task :remove_empty_project => :environment do
+      Project.all.each do |project|
+        if project.memberships == []
+          project.destroy
+        end
+      end
+    end
+
+task :all => ["clean:memberships_users_remove", "clean:memberships_projects_remove", "clean:tasks_projects_remove", "clean:sets_user_id", "clean:tasks_project_id_remove", "clean:comments_task_id_remove", "clean:memberships_ids_null_remove", "clean:remove_empty_project" ]
 end

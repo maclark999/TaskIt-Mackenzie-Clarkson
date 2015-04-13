@@ -7,6 +7,7 @@ class MembershipsController < ApplicationController
     @memberships = @project.memberships
     @membership = Membership.new
     @user = User.find_by_id(session[:user_id])
+    @current_membership = Membership.where(user_id: @user.id, project_id: @project.id)
   end
 
   def show

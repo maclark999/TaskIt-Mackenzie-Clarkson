@@ -29,8 +29,6 @@ gem 'haml'
 
 gem 'pg'
 
-gem 'quiet_assets'
-
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
@@ -54,6 +52,7 @@ group :development, :test do
   gem "factory_girl_rails", "~> 4.0"
   gem 'database_cleaner'
   gem 'better_errors'
+  gem 'quiet_assets'
 
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
