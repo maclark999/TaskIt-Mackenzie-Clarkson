@@ -31,6 +31,31 @@
         </div>
 
 
+                <% if current_user %>
+                <ul class="nav navbar-nav">
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Projects <span class="caret"></span></a>
+                    <ul class="dropdown-menu" role="menu">
+                      <% if current_user.admin? %>
+                        <% Project.all.each do |project| %>
+                          <li><%= link_to project.name, project_path(project) %></li>
+                        <% end %>
+                      <% elsif %>
+                        <% Membership.all.each do |member| %>
+                          <% if member.user_id == current_user.id%>
+                            <li><%= link_to member.project.name, project_path(member.project) %></li>
+                          <% end %>
+                        <% end %>
+                      <% end %>
+                      <li class="divider"></li>
+                      <li><%= link_to 'New Project', new_project_path %></li>
+                    </ul>
+                  </li>
+                  <li><%= link_to 'Users', users_path%></li>
+                </ul>
+                <% end %>
+
+
         <div id="navbar" class="navbar-collapse collapse">
           <ul class = 'nav navbar-nav navbar-right'>
             <% if current_user %>
@@ -56,31 +81,20 @@
 <footer>
   <hr>
   <div class="row">
-  <div class="col-md-6">
+
+  <div class="text-center">
     <!-- <a href="/about">About</a> -->
     <%= link_to "About", about_path %>
     |
     <%= link_to "Terms", terms_path %>
     |
     <%= link_to "FAQ", faq_path %>
-    <% if current_user %>
     |
     <%= link_to "Users", users_path %>
     |
     <%= link_to "Projects", projects_path %>
-    <% end %>
   </div>
 
-  <div class="col-md-6 text-right">
-      <%= link_to (image_tag "linkedin.jpg", class: "img-footer"), "https://www.linkedin.com/in/mackenzieclarkson", target: "_blank" %>
-
-      <%= link_to (image_tag "github.png", class: "img-footer"), "https://github.com/maclark999", target: "_blank" %>
-
-      <%= link_to (image_tag "twitter.png", class: "img-footer"), "https://twitter.com/ahumanmackenzie", target: "_blank" %>
-
-      <%= link_to (image_tag "galavanize.png", class: "img-footer"), "https://students.gschool.it/students/214", target: "_blank" %>
-
-  </div>
 </div>
 
 </footer>
