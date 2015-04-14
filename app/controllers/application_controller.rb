@@ -9,6 +9,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate
     if not current_user
+      session[:return_to] = request.fullpath
       redirect_to signin_path, alert: 'You are not signed in!'
     end
   end
@@ -26,6 +27,9 @@ class ApplicationController < ActionController::Base
           redirect_to projects_path, alert: 'You do not have access'
       end
   end
+
+
+
 
     helper_method :current_member
     helper_method :current_user

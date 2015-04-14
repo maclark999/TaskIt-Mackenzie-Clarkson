@@ -4,10 +4,15 @@ before_action :set_user, only: [:show, :edit, :update, :destroy]
 layout 'internal'
   def index
     @users = User.all
+    @current_user_projects = current_user.memberships.map do |member|
+      member.project_id
+    end
   end
 
   def show
-
+    @current_user_projects = current_user.memberships.map do |member|
+      member.project_id
+    end
   end
 
   def new
@@ -53,5 +58,6 @@ private
   def user_params
     params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation, :admin)
   end
+
 
 end
