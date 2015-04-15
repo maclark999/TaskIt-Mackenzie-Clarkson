@@ -10,10 +10,8 @@ layout 'internal'
   def show
     @user = User.find_by_id(session[:user_id])
     @membership = Membership.where(user_id: @user.id, project_id: @project.id)
-    @project.memberships.each do |member|
-      @member_id = member.user_id
-    end
-    unless @member_id == @user.id || @user.admin?
+    @member_id = @project.memberships.map {|member| member.user_id }
+    unless @member_id.include?(@user.id) || @user.admin?
       redirect_to projects_path, alert: 'You do not have access to that project'
     end
   end
@@ -60,7 +58,6 @@ layout 'internal'
     def set_project
       @project = Project.find(params[:id])
     end
-
 
     def project_params
       params.require(:project).permit(:name)
