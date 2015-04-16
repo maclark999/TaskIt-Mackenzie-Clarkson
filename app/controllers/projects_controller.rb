@@ -40,7 +40,7 @@ layout 'internal'
       if @user.admin? && @project.destroy || @membership[0].role == "owner" && @project.destroy
         redirect_to projects_path, notice: 'Project was successfully destroyed'
       else
-        render :back, alert: 'You do not have access'
+        render :show, alert: 'You do not have access'
       end
   end
 
