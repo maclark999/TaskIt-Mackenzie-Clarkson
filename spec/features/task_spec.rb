@@ -1,28 +1,33 @@
 require 'rails_helper'
 
  describe 'User can CRUD tasks' do
-   before :each do
-     visit '/'
-
    User.create(:first_name => 'Test', :last_name => 'Testy', :email => 'test@testy.com', :password => 'password')
-   @project = Project.create(:name => 'Project')
+   Project.create!(:name => 'prooject')
 
+   before :each do
+     User.create(:first_name => 'Test', :last_name => 'Testy', :email => 'test@testy.com', :password => 'password')
+     Project.create!(:name => 'prooject')
+     visit '/'
      click_link 'Sign In'
      fill_in :email, :with => 'test@testy.com'
      fill_in :password, :with => 'password'
      click_button 'Sign In'
-     click_on 'Projects'
-     click_link 'Project'
+    #  within(".table") do
+    #    click_link 'prooject'
+    #  end
+    within(".page-header") do
+      click_link('New Project')
+    end
+
+    fill_in 'project[name]', :with => 'prooject'
+
+    click_on 'Create Project'
+
    end
 
   scenario 'User can create new task' do
 
-    click_on '0 Tasks'
-
-    expect(page).to have_content ('Tasks for Project')
-
     click_link 'New Task'
-
     fill_in 'task[description]', :with => 'Test'
     select '2015', :from => "task_due_date_1i"
     select 'March', :from => "task_due_date_2i"
@@ -36,9 +41,6 @@ require 'rails_helper'
   end
 
   scenario 'User can visit task show page' do
-    click_on '0 Tasks'
-
-    expect(page).to have_content ('Tasks for Project')
 
     click_link 'New Task'
 
@@ -56,9 +58,6 @@ require 'rails_helper'
   end
 
   scenario 'User can edit task' do
-    click_on '0 Tasks'
-
-    expect(page).to have_content ('Tasks for Project')
 
     click_link 'New Task'
 
@@ -83,9 +82,6 @@ require 'rails_helper'
   end
 
   scenario 'User can delete task' do
-    click_on '0 Tasks'
-
-    expect(page).to have_content ('Tasks for Project')
 
     click_link 'New Task'
 
