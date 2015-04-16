@@ -34,7 +34,10 @@ layout 'internal'
 
   def destroy
     @project = Project.find(params[:id])
-      if @project.destroy
+    @user = User.find_by_id(session[:user_id])
+    @membership = Membership.where(user_id: @user.id, project_id: @project.id)
+
+      if @user.admin? && @project.destroy || @membership[0].role == "owner" && @project.destroy
         redirect_to projects_path, notice: 'Project was successfully destroyed'
       else
         render :back, alert: 'You do not have access'
