@@ -9,11 +9,12 @@ describe 'User can CRUD projects' do
     fill_in :email, :with => 'test@testy.com'
     fill_in :password, :with => 'password'
     click_button 'Sign In'
-    click_on 'Projects'
   end
 
   scenario 'User can create project' do
-    click_on 'New Project'
+    within(".page-header") do
+      click_link('New Project')
+    end
 
     fill_in 'project[name]', :with => 'prooject'
 
@@ -23,17 +24,35 @@ describe 'User can CRUD projects' do
   end
 
   scenario 'User can visit project show page' do
-    Project.create(:name => 'prooject')
-    visit 'projects'
+    #Project.create(:name => 'prooject')
+    within(".page-header") do
+      click_link('New Project')
+    end
 
-    click_on 'prooject'
+    fill_in 'project[name]', :with => 'prooject'
 
+    click_on 'Create Project'
+
+    #find("a", :text => 'projects/1').click
+    within(".breadcrumb") do
+      click_link 'prooject'
+    end
     expect(page).to have_content ('prooject')
   end
 
   scenario 'User can edit project' do
-    Project.create(:name => 'prooject')
-    visit 'projects'
+    within(".page-header") do
+      click_link('New Project')
+    end
+
+    fill_in 'project[name]', :with => 'prooject'
+
+    click_on 'Create Project'
+
+    #find("a", :text => 'projects/1').click
+    within(".breadcrumb") do
+      click_link 'prooject'
+    end
 
     click_on 'Edit'
 
@@ -46,10 +65,24 @@ describe 'User can CRUD projects' do
   end
 
   scenario 'User can delete project' do
-    Project.create(:name => 'prooject')
-    visit 'projects'
 
-    click_on 'Delete'
+    within(".page-header") do
+      click_link('New Project')
+    end
+
+    fill_in 'project[name]', :with => 'prooject'
+
+    click_on 'Create Project'
+
+    #find("a", :text => 'projects/1').click
+    within(".breadcrumb") do
+      click_link 'prooject'
+    end
+
+    within(".well") do
+      click_on 'Delete'
+    end
+
     expect(page).to have_content ('Project was successfully destroyed')
     expect(page).to have_no_content('prooject')
   end

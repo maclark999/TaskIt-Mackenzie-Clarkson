@@ -26,22 +26,22 @@
   <%# if @user.admin? || member.user_id == current_user.id %>
 
   <% if @user.admin? || @current_membership[0].role == "owner" %>
-      <div class="well form-inline col-md-8">
+      <div class="well form-inline">
         <%= form_for [@project, @membership] do |f| %>
           <%= f.collection_select(:user_id, User.all, :id, :full_name, {include_blank: 'Please select a user...'}, {class: "form-control"}) %>
           <%= f.select(:role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, {class: "form-control"}) %>
-          <input class = "btn btn-primary"<%= f.submit %></input>
+          <input class = "btn btn-primary"<%= f.submit "Add New Member" %></input>
         <% end %>
       </div>
   <% end %>
 
       <div class = "row form-inline col-md-8">
       <% @project.memberships.each do |membler| %>
-        <div class="member form-group col-md-6">
+        <div class="member col-md-6">
           <%=link_to membler.user.full_name, user_path(membler.user_id) %>
         </div>
       <%= form_for [@project, membler], method: :put do |f| %>
-        <div class="member form-group">
+        <div class="member col-md-6">
         <% if @user.admin? || @current_membership[0].role == "owner" %>
           <%= f.select(:role, Membership.roles.keys.map {|role| [role.titleize,role]}, {include_blank: false}, {class: "form-control"}) %>
           <input class = 'btn btn-primary'<%= f.submit "Update"%></input>

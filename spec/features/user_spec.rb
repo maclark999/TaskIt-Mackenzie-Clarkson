@@ -8,8 +8,10 @@ describe 'User can CRUD users' do
     fill_in :email, :with => 'test@testy.com'
     fill_in :password, :with => 'password'
     click_button 'Sign In'
-    click_on 'Users'
-      end
+    within(".navbar") do
+      click_on 'Users'
+    end
+  end
 
   scenario 'User can create a new user' do
     click_on "New User"
@@ -25,7 +27,6 @@ describe 'User can CRUD users' do
     expect(page).to have_content('User was successfully created')
     expect(page).to have_content('mister')
     expect(page).to have_content('bojangles')
-    expect(page).to have_content('bojangely@jangles.com')
   end
 
   scenario 'User can view show page for particular user' do
@@ -37,33 +38,20 @@ describe 'User can CRUD users' do
 
     click_on 'Create User'
 
-    click_on "mister"
+    click_on "mister bojangles"
 
-    expect(page).to have_content('mister bojangles')
-    expect(page).to have_content('bojangely@jangles.com')
+    expect(page).to have_content('mister')
+    expect(page).to have_content('bojangles')
   end
 
   scenario 'User can edit a user' do
-    click_on "New User"
-    fill_in 'user[first_name]', :with => 'mister'
-    fill_in 'user[last_name]', :with => 'bojangles'
-    fill_in 'user[email]', :with => 'bojangely@jangles.com'
-    fill_in 'user[password]', :with => 'blah'
+    within(".pull-right") do
+      click_button 'Edit'
+    end
+    
+    fill_in 'user[first_name]', :with => 'bojangles'
 
-    click_on 'Create User'
-
-    expect(page).to have_content('mister')
-    expect(page).to have_content('bojangely@jangles.com')
-
-    click_link 'mister'
-    click_on 'Edit'
-
-    expect(page).to have_content('Edit User')
-
-    fill_in'user[first_name]', :with => 'mrs'
-    click_on 'Update User'
-
-    expect(page).to have_content('mrs')
+    epxect(page).to have_content('bojangles')
   end
 
   scenario 'User can delete a user' do
