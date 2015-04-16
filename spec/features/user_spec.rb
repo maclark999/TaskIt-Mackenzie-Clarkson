@@ -45,31 +45,21 @@ describe 'User can CRUD users' do
   end
 
   scenario 'User can edit a user' do
-    within(".pull-right") do
-      click_button 'Edit'
+    within(".table") do
+      click_on "Edit"
     end
-    
+
     fill_in 'user[first_name]', :with => 'bojangles'
 
-    epxect(page).to have_content('bojangles')
+    click_on 'Update User'
+
+    expect(page).to have_content('bojangles')
   end
 
   scenario 'User can delete a user' do
-    click_on "New User"
-    fill_in 'user[first_name]', :with => 'mister'
-    fill_in 'user[last_name]', :with => 'bojangles'
-    fill_in 'user[email]', :with => 'bojangely@jangles.com'
-    fill_in 'user[password]', :with => 'blah'
-
-    click_on 'Create User'
-    click_link 'mister'
-    click_on 'Edit'
-
-    expect(page).to have_content('Edit User')
-
     click_on 'Delete'
 
-    expect(page).to have_content('User was successfully destroyed')
+    expect(page).to have_content('You are not signed in!')
     expect(page).to have_no_content('mister')
   end
 
