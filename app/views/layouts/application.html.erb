@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>gCampMackenzieClarkson</title>
+  <title>TaskIt!</title>
   <%= favicon_link_tag 'giphy.gif' %>
   <%= stylesheet_link_tag 'application', media: 'all' %>
   <%= javascript_include_tag 'application' %>
@@ -28,9 +28,9 @@
             <span class="icon-bar"></span>
           </button>
           <% if current_user %>
-          <%= link_to "gCamp", projects_path, class: "navbar-brand" %>
+          <%= link_to "Task It!", projects_path, class: "navbar-brand" %>
           <% else %>
-            <a class="navbar-brand" href="/">gCamp</a>
+            <a class="navbar-brand" href="/">Task It!</a>
             <% end %>
         </div>
 
